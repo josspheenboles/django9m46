@@ -1,4 +1,4 @@
-from django.shortcuts import render
+from django.shortcuts import render,HttpResponseRedirect
 from django.http import HttpResponse
 
 from .forms import BookForm
@@ -30,18 +30,30 @@ def addbook(request):
         #              catagory=
         #              Catagory.objects.get(pk=request.POST['catagoryid']))
         # bookobj.save()
-        Book.objects.create(
-            version=request.POST['version'],
-                         price=request.POST['price'],
-                         description=request.POST['description'],
+        #publish form data
+        form=BookForm(request.POST)
+        if form.is_valid():
+            # Process the data in form.cleaned_data
+            Book.objects.create(
+                name=form.cleaned_data['name'],
+                version=form.cleaned_data['version'],
+                         price=form.cleaned_data['price'],
+                         description=form.cleaned_data['description'],
                          catagory=
-                         Catagory.objects.get(pk=request.POST['catagoryid']))
-
+                         Catagory.objects.get(pk=form.cleaned_data['catagory']))
+        else:
+            context['cats'] = Catagory.objects.all()
+            context['form'] = BookForm(request.POST)
+            context['msg']=form.errors
+            return render(request, 'book/add.html', context)
         #redirect book list
-        return HttpResponse('<h1>add new boook</h1>')
+        return HttpResponseRedirect('/Book/')
+        # return HttpResponse('<h1>add new boook</h1>')
 
 def listbook(req):
-    return HttpResponse('<h1>list book</h1>')
+    return render(req,'book/list.html',{'books':
+                                        Book.objects.all()})
+    # return HttpResponse('<h1>list book</h1>')
 
 def getbookbyid(request,id):
     print(type(request))
