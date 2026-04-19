@@ -62,8 +62,19 @@ def getbookbyid(request,id):
     context={'book':Book.objects.get(id=id)}
     return render(request,'book/bookdetails.html',context)
 def bookupdate(request,id):
-    print(type(request))
-    return HttpResponse(f'<h1>update book by {id}  </h1>')
+    if request.method=='GET':
+        context={'form':BookFormModel(instance=Book.objects.get(id=id))}
+    # print(type(request))
+    # return HttpResponse(f'<h1>update book by {id}  </h1>')
+        return render(request, 'book/update.html', context)
+    else:
+        form=BookFormModel(request.POST,instance=Book.objects.get(id=id)    )
+        if form.is_valid():
+            form.save()
+            return HttpResponseRedirect('/Book/')
+        else:
+            context={'form':form,'msg':form.errors}
+            return render(request, 'book/update.html', context)
 def bookdelete(request,id):
     print(type(request))
     return HttpResponse(f'<h1>Delete book by {id}  </h1>')
