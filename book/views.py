@@ -9,11 +9,12 @@ from catagory.models import Catagory
 def addbook(request):
     #document.write
     # return HttpResponse('<h1>add new boook</h1>')
-    context={'msg':'from add book'}
+    context={}
     # print(request.method)
     # print(request.POST)
     # print(request.GET)
     if request.method=='GET':
+        context['cats']=Catagory.objects.all()
         return  render(request,'book/add.html',context)
     else:
         #save data

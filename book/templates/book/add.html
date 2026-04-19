@@ -20,9 +20,10 @@
                 </br>
                 <label>Catagory</label>
                 <select name="catagoryid">
-                    <option value="0"> Catagory</option>
-                    <option value="3"> Catagory3</option>
-                    <option value="2"> Catagory2</option>
+                    {%for cat in cats%}
+                     <option value="{{cat.id}}"> {{cat.name}}</option>
+                    {%endfor%}
+
                 </select>
                 </br>
                 <input type="submit" value="Add">
