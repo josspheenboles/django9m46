@@ -1,5 +1,7 @@
 from django.shortcuts import render
 from django.http import HttpResponse
+from .models import Book
+from catagory.models import Catagory
 # Create your views here.
 #function basded view
 #param of httprequest
@@ -8,10 +10,29 @@ def addbook(request):
     #document.write
     # return HttpResponse('<h1>add new boook</h1>')
     context={'msg':'from add book'}
-    print(request.method)
-    print(request.POST)
-    print(request.GET)
-    return  render(request,'book/add.html',context)
+    # print(request.method)
+    # print(request.POST)
+    # print(request.GET)
+    if request.method=='GET':
+        return  render(request,'book/add.html',context)
+    else:
+        #save data
+        # bookobj=Book(name=request.POST['name'],
+        #              version=request.POST['version'],
+        #              price=request.POST['price'],
+        #              description=request.POST['description'],
+        #              catagory=
+        #              Catagory.objects.get(pk=request.POST['catagoryid']))
+        # bookobj.save()
+        Book.objects.create(
+            version=request.POST['version'],
+                         price=request.POST['price'],
+                         description=request.POST['description'],
+                         catagory=
+                         Catagory.objects.get(pk=request.POST['catagoryid']))
+
+        #redirect book list
+        return HttpResponse('<h1>add new boook</h1>')
 
 def listbook(req):
     return HttpResponse('<h1>list book</h1>')
