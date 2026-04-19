@@ -6,27 +6,9 @@
        <h1>New Book<h1>
             <form method="post">
                 {%csrf_token%}
-                <label>Name</label>
-                <input type="text" maxlength="100" required name="name"/>
-                </br>
-                <label>Version</label>
-                <input type="number" required name="version"/>
-                </br>
-                <label>Price</label>
-                <input type="number" required name="price"/>
-                </br>
-                <label>Description</label>
-                <input type="text" required name="description"/>
-                </br>
-                <label>Catagory</label>
-                <select name="catagoryid">
-                    {%for cat in cats%}
-                     <option value="{{cat.id}}"> {{cat.name}}</option>
-                    {%endfor%}
 
-                </select>
                 </br>
-                <input type="submit" value="Add">
+                <input type="submit" value="Add"/>
 
             </form>
 {%endblock%}

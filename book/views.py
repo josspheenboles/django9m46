@@ -1,7 +1,10 @@
 from django.shortcuts import render
 from django.http import HttpResponse
+
+from .forms import BookForm
 from .models import Book
 from catagory.models import Catagory
+
 # Create your views here.
 #function basded view
 #param of httprequest
@@ -13,8 +16,10 @@ def addbook(request):
     # print(request.method)
     # print(request.POST)
     # print(request.GET)
+
     if request.method=='GET':
         context['cats']=Catagory.objects.all()
+        context['form']=BookForm()
         return  render(request,'book/add.html',context)
     else:
         #save data
