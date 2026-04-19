@@ -5,7 +5,10 @@ from django.http import HttpResponse
 #param of httprequest
 #return object httpresponse
 def addbook(request):
-    return HttpResponse('<h1>add new boook</h1>')
+    #document.write
+    # return HttpResponse('<h1>add new boook</h1>')
+    context={'msg':'from add book'}
+    return  render(request,'add.html',contetxt)
 
 def listbook(req):
     return HttpResponse('<h1>list book</h1>')
