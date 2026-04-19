@@ -12,4 +12,4 @@ class BookForm(forms.Form):
 class BookFormModel(forms.ModelForm):
     class Meta:
         model=Book
-        Feilds=['__all__']
+        fields='__all__'

@@ -1,7 +1,7 @@
 from django.shortcuts import render,HttpResponseRedirect
 from django.http import HttpResponse
 
-from .forms import BookForm
+from .forms import BookForm,BookFormModel
 from .models import Book
 from catagory.models import Catagory
 
@@ -19,7 +19,7 @@ def addbook(request):
 
     if request.method=='GET':
         context['cats']=Catagory.objects.all()
-        context['form']=BookForm()
+        context['form']=BookFormModel()
         return  render(request,'book/add.html',context)
     else:
         #save data
@@ -31,19 +31,20 @@ def addbook(request):
         #              Catagory.objects.get(pk=request.POST['catagoryid']))
         # bookobj.save()
         #publish form data
-        form=BookForm(request.POST)
+        form=BookFormModel(request.POST)
         if form.is_valid():
             # Process the data in form.cleaned_data
-            Book.objects.create(
-                name=form.cleaned_data['name'],
-                version=form.cleaned_data['version'],
-                         price=form.cleaned_data['price'],
-                         description=form.cleaned_data['description'],
-                         catagory=
-                         Catagory.objects.get(pk=form.cleaned_data['catagory']))
+            # Book.objects.create(
+            #     name=form.cleaned_data['name'],
+            #     version=form.cleaned_data['version'],
+            #              price=form.cleaned_data['price'],
+            #              description=form.cleaned_data['description'],
+            #              catagory=
+            #              Catagory.objects.get(pk=form.cleaned_data['catagory']))
+            form.save()
         else:
             context['cats'] = Catagory.objects.all()
-            context['form'] = BookForm(request.POST)
+            context['form'] = BookFormModel(request.POST)
             context['msg']=form.errors
             return render(request, 'book/add.html', context)
         #redirect book list
