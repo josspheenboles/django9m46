@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>
+      {%block title%}
+      Intake46
+      {%endblock%}
+    </title>
+</head>
+<body>
+<table border="1px solid" width="100%" heigth="100%">
+  <tr>
+    <td colspan="12">
+      <h1>header</h1>
+    </td>
+  </tr>
+  <tr>
+    <td colspan="3">
+      <h1>menu</h1>
+    </td>
+    <td colspan="3">
+      <h1>content</h1>
+      {%block content%}
+      parent -content
+      {%endblock%}
+    </td>
+  </tr>
+  <tr>
+    <td colspan="12">
+      <h1>footer</h1>
+    </td>
+  </tr>
+</table>
+{%block js%}
+{%endblock%}
+</body>
+</html>

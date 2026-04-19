@@ -1,0 +1,31 @@
+{%extends 'parent.html'%}
+{%block title%}
+    Book_New
+{%endblock%}
+ {%block content%}
+       <h1>New Book<h1>
+            <form method="post">
+                {%csrf_token%}
+                <label>Name</label>
+                <input type="text" maxlength="100" required name="name"/>
+                </br>
+                <label>Version</label>
+                <input type="number" required name="version"/>
+                </br>
+                <label>Price</label>
+                <input type="number" required name="price"/>
+                </br>
+                <label>Description</label>
+                <input type="text" required name="description"/>
+                </br>
+                <label>Catagory</label>
+                <select name="catagoryid">
+                    <option value="0"> Catagory</option>
+                    <option value="1"> Catagory1</option>
+                    <option value="2"> Catagory2</option>
+                </select>
+                </br>
+                <input type="submit" value="Add">
+
+            </form>
+{%endblock%}

@@ -8,7 +8,10 @@ def addbook(request):
     #document.write
     # return HttpResponse('<h1>add new boook</h1>')
     context={'msg':'from add book'}
-    return  render(request,'add.html',contetxt)
+    print(request.method)
+    print(request.POST)
+    print(request.GET)
+    return  render(request,'book/add.html',context)
 
 def listbook(req):
     return HttpResponse('<h1>list book</h1>')

@@ -17,9 +17,10 @@ Including another URLconf
 from django.contrib import admin
 from django.urls import path,include
 from book.views import *
+from catagory.views import *
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('Book/',include('book.urls')),
-    # path('Cat/',include('catagory.urls'))
+    path('Cat/',list),
 
 ]
