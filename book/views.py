@@ -57,8 +57,10 @@ def listbook(req):
     # return HttpResponse('<h1>list book</h1>')
 
 def getbookbyid(request,id):
-    print(type(request))
-    return HttpResponse(f'<h1>get book by {id}  </h1>')
+    # print(type(request))
+    # return HttpResponse(f'<h1>get book by {id}  </h1>')
+    context={'book':Book.objects.get(id=id)}
+    return render(request,'book/bookdetails.html',context)
 def bookupdate(request,id):
     print(type(request))
     return HttpResponse(f'<h1>update book by {id}  </h1>')
