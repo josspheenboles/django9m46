@@ -1,0 +1,71 @@
+create project
+define modules(apps)--->caragory,book
+install apps & models & templates--->settings.py--->installed apps
+routes
+congigure db
+    create mysql db
+    install mysqlclient -->pip install mysqlclient
+    config settings
+        'OPTIONS': {
+            'init_command': "SET sql_mode='STRICT_TRANS_TABLES'",
+        }
+design models
+install models
+admin dashboard
+    createsuperuser
+templates
+    structure
+
+
+--fast implemtnt
+
+   <h1>New Book<h1>
+            <form method="post">
+                {%csrf_token%}
+                <label>Name</label>
+                <input type="text" maxlength="100" required name="name"/>
+                </br>
+                <label>Version</label>
+                <input type="number" required name="version"/>
+                </br>
+                <label>Price</label>
+                <input type="number" required name="price"/>
+                </br>
+                <label>Description</label>
+                <input type="text" required name="description"/>
+                </br>
+                <label>Catagory</label>
+                <select name="catagoryid">
+                    <option value="0"> Catagory</option>
+                    <option value="1"> Catagory1</option>
+                    <option value="2"> Catagory2</option>
+                </select>
+                </br>
+                <input type="submit" value="Add">
+
+            </form>
+           ==================================================
+day2
+static
+setting.py--->
+    STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')
+
+    # Optional: Extra places to look for assets during development
+    STATICFILES_DIRS = [
+        os.path.join(BASE_DIR, 'static'),
+    ]
+    python manage.py collectstatic
+forms
+url
+update/details
+views types
+media
+    pip install Pillow
+    MEDIA_URL = '/media/'
+    MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
+    urlpatterns = [
+    # ... your paths ...
+] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
+
+models.ImageField(upload_to='book_covers/', null=True, blank=True)
+book.cover_image = request.FILES['cover']
