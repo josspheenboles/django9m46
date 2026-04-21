@@ -69,3 +69,7 @@ media
 
 models.ImageField(upload_to='book_covers/', null=True, blank=True)
 book.cover_image = request.FILES['cover']
+
+=======requirments =======
+pip freeze > requirments.txt
+pip install -r requirments.txt

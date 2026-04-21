@@ -1,5 +1,5 @@
 from django.shortcuts import render,HttpResponseRedirect
-from django.http import HttpResponse
+from django.http import HttpResponse,JsonResponse
 
 from .forms import BookForm,BookFormModel
 from .models import Book
@@ -9,6 +9,11 @@ from catagory.models import Catagory
 #function basded view
 #param of httprequest
 #return object httpresponse
+
+
+
+
+# @api_view(['GET','POST'])
 def addbook(request):
     #document.write
     # return HttpResponse('<h1>add new boook</h1>')
@@ -78,3 +83,5 @@ def bookupdate(request,id):
 def bookdelete(request,id):
     print(type(request))
     return HttpResponse(f'<h1>Delete book by {id}  </h1>')
+
+
